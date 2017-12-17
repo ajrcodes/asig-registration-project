@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ASig Rush Portal</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">ΑΣΦ Rush Portal</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li style="padding: 40px 0 0;"> 
+                            <a href="dashboard.html"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="registration.html"><i class="fa fa-user fa-fw" aria-hidden="true"></i> Registration</a>
+                        </li>
+                        <li>
+                            <a href="checkin-portal.html"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Check-in</a>
+                        </li>
+                        <li>
+                            <a href="rushee-tables.html"><i class="fa fa-group fa-fw" aria-hidden="true"></i> Rushees</a>
+                        </li>
+                        <li>
+                            <a href="profile.html"><i class="fa fa-search fa-fw" aria-hidden="true"></i> Search</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="page-header">Rushee Entries</h4>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        Rushee information page
+                      </div>
+                      <div class="panel-body">
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  First Name:
+                                  <label id="firstName">No first name provided</label>
+                              </div>
+                              <div class="col-md-6">
+                              <div class="text-right">
+                                <button class="btn close">Delete <span class="glyphicon glyphicon-remove" style="vertical-align:middle"></span></button>
+                                <div id="dialog-box" title="Confirmation:">This will permanently delete the rushee's record, are you sure?</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  Last Name:
+                                  <label id="lastName">No last name provided</label>
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">Image:</div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  <img id="rusheePic" src="images/default.jpg">
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  Year:
+                                  <label id="year">No year provided</label>
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  Address:
+                                  <label id="address">No address provided</label>
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  Phone number:
+                                  <label id="phoneNum">No phone number provided</label>
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  UVA id:
+                                  <label id="uvaid">No UVA id provided</label>
+                              </div>
+                          </div>
+                          <hr>
+                          <label>Round invites</label>
+                          <div class="padding-top-10"></div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  First Round:
+                                  <label id="rusheeFirstRound"><span class="glyphicon glyphicon-remove"></span></label>
+                              </div>
+                              <div class "col-md-6">
+                                  <button class="btn btn-success btn-xs" onClick="add('rusheeFirstRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                                  <button class="btn btn-danger btn-xs" onClick="remove('rusheeFirstRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  Second Round:
+                                  <label id="rusheeSecondRound"><span class="glyphicon glyphicon-remove"></span></label>
+                              </div>
+                              <div class "col-md-6">
+                                  <button class="btn btn-success btn-xs" onClick="add('rusheeSecondRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                                  <button class="btn btn-danger btn-xs" onClick="remove('rusheeSecondRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="row padding-top-10">
+                              <div class="col-md-6">
+                                  Third Round:
+                                  <label id="rusheeThirdRound"><span class="glyphicon glyphicon-remove"></span></label>
+                              </div>
+                              <div class "col-md-6">
+                                  <button class="btn btn-success btn-xs" onClick="add('rusheeThirdRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                                  <button class="btn btn-danger btn-xs" onClick="remove('rusheeThirdRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                              </div>
+                          </div>
+                          <hr>
+                          <label>Event attendance</label>
+                          <div class="padding-top-10"></div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-4">
+                                  <label>First Round</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <label>Second Round</label>
+                              </div>
+                              <div class="col-md-4">
+                                  <label>Third Round</label>
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-4">
+                                  Event 1:
+                                  <label id="event1">No</label>
+                              </div>
+                              <div class="col-md-4">
+                                  Event 1:
+                                  <label id="event4">No</label>
+                              </div>
+                              <div class="col-md-4">
+                                  Event 1:
+                                  <label id="event7">No</label>
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-4">
+                                  Event 2:
+                                  <label id="event2">No</label>
+                              </div>
+                              <div class="col-md-4">
+                                  Event 2:
+                                  <label id="event5">No</label>
+                              </div>
+                              <div class="col-md-4">
+                                  Event 2:
+                                  <label id="event8">No</label>
+                              </div>
+                          </div>
+                          <div class="row padding-top-10">
+                              <div class="col-md-4">
+                                  Event 3:
+                                  <label id="event3">No</label>
+                              </div>
+                              <div class="col-md-4">
+                                  Event 3:
+                                  <label id="event6">No</label>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+            <!-- /.row -->
+            <div style="position: absolute; bottom:0; right:0; padding-bottom: 10px; padding-right: 10px">
+                Created by Andrew Roberts, Class of 2018
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+        
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Footer -->
+    <div id="footer-wrapper">
+        
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        var dataSet = [
+        ["Andrew", "Roberts", "1st Year", "11 Ackerman St"],
+        ["Andrew", "Roberts", "1st Year", "11 Ackerman St"],
+        ["Andrew", "Roberts", "1st Year", "11 Ackerman St"]
+        ];
+
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                responsive: true,
+                data: dataSet,
+                columns: [
+                    { title: "First Name"},
+                    { title: "Last Name"},
+                    { title: "Year"},
+                    { title: "Address"}
+                ]
+            });
+        });
+    </script>
+
+</html>
