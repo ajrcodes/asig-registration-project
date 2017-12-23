@@ -42,7 +42,8 @@ function formatRushee(filename, content) {
         rusheeJSON.firstname,
         rusheeJSON.lastname,
         rusheeJSON.year,
-        rusheeJSON.address
+        rusheeJSON.address,
+        rusheeJSON.email
     );
 
     return rusheeTableObject;

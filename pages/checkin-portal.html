@@ -103,17 +103,17 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 1</a>
+                            <a href="checkin.html" onClick="eventClicked(1,1)">Event 1</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 2</a>
+                            <a href="checkin.html" onClick="eventClicked(1,2)">Event 2</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 3</a>
+                            <a href="checkin.html" onClick="eventClicked(1,3)">Event 3</a>
                         </div>
                     </div>
                 </div>
@@ -130,17 +130,17 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 1</a>
+                            <a href="checkin.html" onClick="eventClicked(2,1)">Event 1</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 2</a>
+                            <a href="checkin.html" onClick="eventClicked(2,2)">Event 2</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 3</a>
+                            <a href="checkin.html" onClick="eventClicked(2,3)">Event 3</a>
                         </div>
                     </div>
                 </div>
@@ -157,47 +157,47 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 1</a>
+                            <a href="checkin.html" onClick="eventClicked(3,1)">Event 1</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="checkin.html">Event 2</a>
+                            <a href="checkin.html" onClick="eventClicked(3,2)">Event 2</a>
                         </div>
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
 
-            <!-- Footer -->
-            <div style="position: absolute; bottom:0; right:0; padding-bottom: 10px; padding-right: 10px">
-                    Created by Andrew Roberts, Class of 2018
-                    <!-- To any future CS majors that are maintaining this code:
-                        Contact me at ajrcodes@gmail.com if you have any questions about the software, or if you 
-                        have any questions about the field in general.  I'd be more than happy to talk with you! -->
-
-        </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- THEME DEPENDENCIES -->
 
+    <!-- jQuery -->
+    <script>window.$ = window.jQuery = require('../vendor/jquery/jquery.min.js');</script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- FUNCTIONALITY -->
+
+    <!-- Checkin-portal App -->
+    <script src="../js/checkinPortalApp.js"></script>
+    <!-- Page scripts -->
+    <script>
+        // param1: # value for round (1, 2, 3)
+        // param 2:  # value for event (1, 2, 3)
+        function eventClicked(round, event) {
+            console.log("Event clicked, round= " + round + " event= " + event);
+            setRoundEventTo(round, event);
+        }
+    </script>
 
 </body>
 

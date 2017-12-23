@@ -13,15 +13,12 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Dialogue Box CSS -->
+    <link href="../vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
     
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
@@ -86,159 +83,147 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="page-header">Rushee Entries</h4>
+                    <h4 class="page-header">Rushee Profiles</h4>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        Rushee information page
-                      </div>
-                      <div class="panel-body">
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  First Name:
-                                  <label id="firstName">No first name provided</label>
-                              </div>
-                              <div class="col-md-6">
-                              <div class="text-right">
-                                <button class="btn close">Delete <span class="glyphicon glyphicon-remove" style="vertical-align:middle"></span></button>
-                                <div id="dialog-box" title="Confirmation:">This will permanently delete the rushee's record, are you sure?</div>
-                              </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button onClick="back()">
+                        <i class="glyphicon glyphicon-menu-left"></i>
+                    </button>
+                      <label id="firstName" style="padding-left: 20px">Andrew</label> <label id="lastName">Roberts</label>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row" style="padding-top: 10px">
+                                <div class="col-md-6">
+                                    <img id="rusheePic" src="images/default.jpg">
+                                </div>
                             </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  Last Name:
-                                  <label id="lastName">No last name provided</label>
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">Image:</div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  <img id="rusheePic" src="images/default.jpg">
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  Year:
-                                  <label id="year">No year provided</label>
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  Address:
-                                  <label id="address">No address provided</label>
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  Phone number:
-                                  <label id="phoneNum">No phone number provided</label>
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  UVA id:
-                                  <label id="uvaid">No UVA id provided</label>
-                              </div>
-                          </div>
-                          <hr>
-                          <label>Round invites</label>
-                          <div class="padding-top-10"></div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  First Round:
-                                  <label id="rusheeFirstRound"><span class="glyphicon glyphicon-remove"></span></label>
-                              </div>
-                              <div class "col-md-6">
-                                  <button class="btn btn-success btn-xs" onClick="add('rusheeFirstRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
-                                  <button class="btn btn-danger btn-xs" onClick="remove('rusheeFirstRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
-                              </div>
-                          </div>
-                          <hr>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  Second Round:
-                                  <label id="rusheeSecondRound"><span class="glyphicon glyphicon-remove"></span></label>
-                              </div>
-                              <div class "col-md-6">
-                                  <button class="btn btn-success btn-xs" onClick="add('rusheeSecondRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
-                                  <button class="btn btn-danger btn-xs" onClick="remove('rusheeSecondRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
-                              </div>
-                          </div>
-                          <hr>
-                          <div class="row padding-top-10">
-                              <div class="col-md-6">
-                                  Third Round:
-                                  <label id="rusheeThirdRound"><span class="glyphicon glyphicon-remove"></span></label>
-                              </div>
-                              <div class "col-md-6">
-                                  <button class="btn btn-success btn-xs" onClick="add('rusheeThirdRound');this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
-                                  <button class="btn btn-danger btn-xs" onClick="remove('rusheeThirdRound');this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
-                              </div>
-                          </div>
-                          <hr>
-                          <label>Event attendance</label>
-                          <div class="padding-top-10"></div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-4">
-                                  <label>First Round</label>
-                              </div>
-                              <div class="col-md-4">
-                                  <label>Second Round</label>
-                              </div>
-                              <div class="col-md-4">
-                                  <label>Third Round</label>
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-4">
-                                  Event 1:
-                                  <label id="event1">No</label>
-                              </div>
-                              <div class="col-md-4">
-                                  Event 1:
-                                  <label id="event4">No</label>
-                              </div>
-                              <div class="col-md-4">
-                                  Event 1:
-                                  <label id="event7">No</label>
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-4">
-                                  Event 2:
-                                  <label id="event2">No</label>
-                              </div>
-                              <div class="col-md-4">
-                                  Event 2:
-                                  <label id="event5">No</label>
-                              </div>
-                              <div class="col-md-4">
-                                  Event 2:
-                                  <label id="event8">No</label>
-                              </div>
-                          </div>
-                          <div class="row padding-top-10">
-                              <div class="col-md-4">
-                                  Event 3:
-                                  <label id="event3">No</label>
-                              </div>
-                              <div class="col-md-4">
-                                  Event 3:
-                                  <label id="event6">No</label>
-                              </div>
-                          </div>
-                      </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right">
+                                <button class="btn close" onClick="this.blur()">Delete <span class="glyphicon glyphicon-remove" style="vertical-align:middle"></span></button>
+                                <div id="dialog-box" title="Confirmation:">This will permanently delete the rushee's record, are you sure?</div>
+                            </div>
+                        </div>
                     </div>
-            <!-- /.row -->
-            <div style="position: absolute; bottom:0; right:0; padding-bottom: 10px; padding-right: 10px">
-                Created by Andrew Roberts, Class of 2018
+                    <div class="row">
+                        <div class="col-md-6" style="padding-top: 10px">
+                            Year:
+                            <label id="year">No year provided</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Address:
+                            <label id="address">No address provided</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Phone number:
+                            <label id="phoneNum">No phone number provided</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            UVA id:
+                            <label id="uvaid">No UVA id provided</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <label>Round invites</label>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-6">
+                            First Round:
+                            <label id="rusheeFirstRound"><span class="glyphicon glyphicon-remove"></span></label>
+                        </div>
+                        <div class "col-md-6">
+                            <button class="btn btn-success btn-xs" onClick="addToRound(1);this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                            <button class="btn btn-danger btn-xs" onClick="removeFromRound(1);this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Second Round:
+                            <label id="rusheeSecondRound"><span class="glyphicon glyphicon-remove"></span></label>
+                        </div>
+                        <div class "col-md-6">
+                            <button class="btn btn-success btn-xs" onClick="addToRound(2);this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                            <button class="btn btn-danger btn-xs" onClick="removeFromRound(2);this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Third Round:
+                            <label id="rusheeThirdRound"><span class="glyphicon glyphicon-remove"></span></label>
+                        </div>
+                        <div class "col-md-6">
+                            <button class="btn btn-success btn-xs" onClick="addToRound(3);this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                            <button class="btn btn-danger btn-xs" onClick="removeFromRound(3);this.blur()">Remove <span class="glyphicon glyphicon-minus"></span></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <label>Event attendance</label>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-4">
+                            <label>First Round</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Second Round</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Third Round</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            Event 1:
+                            <label id="event1">No</label>
+                        </div>
+                        <div class="col-md-4">
+                            Event 1:
+                            <label id="event4">No</label>
+                        </div>
+                        <div class="col-md-4">
+                            Event 1:
+                            <label id="event7">No</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            Event 2:
+                            <label id="event2">No</label>
+                        </div>
+                        <div class="col-md-4">
+                            Event 2:
+                            <label id="event5">No</label>
+                        </div>
+                        <div class="col-md-4">
+                            Event 2:
+                            <label id="event8">No</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            Event 3:
+                            <label id="event3">No</label>
+                        </div>
+                        <div class="col-md-4">
+                            Event 3:
+                            <label id="event6">No</label>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- /.row -->
+
         </div>
         <!-- /#page-wrapper -->
         
@@ -248,46 +233,78 @@
 
     <!-- Footer -->
     <div id="footer-wrapper">
-        
     </div>
 
+    <!-- THEME DEPENDENCIES -->
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
+    <script>window.$ = window.jQuery = require('../vendor/jquery/jquery.min.js');</script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
+    <!-- Dialogue popup -->
+    <script src="../vendor/jquery-ui/jquery-ui.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <!-- FUNCTIONALITY -->
+    <script src="../js/rusheeProfileApp.js"></script>
     <script>
-        var dataSet = [
-        ["Andrew", "Roberts", "1st Year", "11 Ackerman St"],
-        ["Andrew", "Roberts", "1st Year", "11 Ackerman St"],
-        ["Andrew", "Roberts", "1st Year", "11 Ackerman St"]
-        ];
-
+        // set up delete button
         $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true,
-                data: dataSet,
-                columns: [
-                    { title: "First Name"},
-                    { title: "Last Name"},
-                    { title: "Year"},
-                    { title: "Address"}
-                ]
+            $("#dialog-box").dialog({
+                autoOpen: false,
+                modal: true
             });
+
+            $(".close").click(function(e) {
+                $("#dialog-box").dialog({
+                    buttons : {
+                        "Confirm" : function() {
+                            var user_id = document.getElementById("uvaid").innerHTML;
+                            // go back 2 pages so the json is reloaded & the table reflects the delete
+                            history.go(-1);
+                        },
+                        "Cancel" : function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+
+                $("#dialog-box").dialog("open");
+            }); 
         });
+
+        getRusheeEventAttendance(email, eventAttendance);
+        getRusheeRoundInvites(email, roundAttendance);
+        
+        setTimeout(function(){ 
+            // events
+            document.getElementById('event1').innerHTML = eventAttendance.round1event1;
+            document.getElementById('event2').innerHTML = eventAttendance.round1event2;
+            document.getElementById('event3').innerHTML = eventAttendance.round1event3;
+            document.getElementById('event4').innerHTML = eventAttendance.round2event1;
+            document.getElementById('event5').innerHTML = eventAttendance.round2event2;
+            document.getElementById('event6').innerHTML = eventAttendance.round2event3;
+            document.getElementById('event7').innerHTML = eventAttendance.round3event1;
+            document.getElementById('event8').innerHTML = eventAttendance.round3event2;
+            //rounds
+            document.getElementById('rusheeFirstRound').innerHTML = roundAttendance.round1;
+            document.getElementById('rusheeSecondRound').innerHTML = roundAttendance.round2;
+            document.getElementById('rusheeThirdRound').innerHTML = roundAttendance.round3;
+        }, 500);
+
+        // param1: # value for round (1, 2, 3)
+        function addToRound(round) {
+            console.log("Add round clicked, round= " + round);
+            addRusheeRoundInvite(round);
+        }
+
+        // param1: # value for round (1, 2, 3)
+        function removeFromRound(round) {
+            console.log("Remove round clicked, round= " + round);
+            removeRusheeRoundInvite(round);
+        }
     </script>
 
 </html>

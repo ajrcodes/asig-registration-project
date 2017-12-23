@@ -20,6 +20,9 @@
     <!-- DataTables CSS -->
     <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
+    <!-- DataTables Select CSS -->
+    <link href="../vendor/datatables-select/dataTables.select.min.css" rel="stylesheet">
+
     <!-- DataTables Responsive CSS -->
     <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
@@ -105,17 +108,8 @@
             </div>
             <!-- /.row -->
 
-            <!-- Footer -->
-            <div style="position: absolute; bottom:0; right:0; padding-bottom: 10px; padding-right: 10px">
-                Created by Andrew Roberts, Class of 2018
-                <!-- To any future CS majors that are maintaining this code:
-                    Contact me at ajrcodes@gmail.com if you have any questions about the software, or if you 
-                    have any questions about the field in general.  I'd be more than happy to talk with you! -->
-            </div>
-
         </div>
-        <!-- /#page-wrapper -->
-        
+        <!-- /#page-wrapper -->       
 
     </div>
     <!-- /#wrapper -->
@@ -136,17 +130,17 @@
     <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="../vendor/datatables-select/dataTables.select.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <!-- FUNCTIONALITY -->
-    <!-- Db -->
-    <script src="../js/db.js"></script>
-    <!-- Rushee Tables App -->
-    <script src="../js/rusheeTableApp.js"></script>
     
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <!-- Rushee Table App -->
+    <script src="../js/rusheeTableApp.js"></script>
+    <!-- Table script -->
     <script>
+        const remote = require('electron').remote;        
         var table;
         var dataSet = loadRushees();
 
@@ -154,12 +148,23 @@
             table = $('#dataTables-example').DataTable({
                 responsive: true,
                 data: dataSet,
+                select: true,
                 columns: [
                     { title: "First Name"},
                     { title: "Last Name"},
                     { title: "Year"},
-                    { title: "Address"}
+                    { title: "Address"},
+                    { title: "Email"}
                 ]
+            });
+
+            table.on( 'select', function ( e, dt, type, indexes ) {
+                var rowData = table.rows( indexes ).data()[0]; // row data index 0 is the array of information [firstname, lastname, year, address, telephone, email]
+                var selectedRusheeEmail = rowData[4];
+                remote.getGlobal('sharedObject').selectedRusheeEmail = selectedRusheeEmail; // set variable to be used in detail view
+                console.log("Table.select triggered: rushee.email = " + selectedRusheeEmail);
+                location.href = "rushee-profile.html";
+                
             });
 
             setTimeout(function(){ 
