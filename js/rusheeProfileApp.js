@@ -1,15 +1,17 @@
 // Modules
 var fs = require('fs');
 var path = require('path');
+const remote = require('electron').remote; 
 
 // Page details
-const remote = require('electron').remote; 
 var email = remote.getGlobal('sharedObject').selectedRusheeEmail;
+var data = getRusheeProfile(email, function(data){
+    profilePageSetup(data);
+    console.log(data + "blah");
+    return data;
+});
 
 // Event Attendance
-var defaultNo = '<span class="glyphicon glyphicon-remove" style="color:#FF0000;"></span>';
-var defaultYes = '<span class="glyphicon glyphicon-ok" style="color:#00FF00;"></span>';
-
 var eventAttendance = {
     round1event1: defaultNo,
     round1event2: defaultNo,
@@ -27,10 +29,8 @@ var roundAttendance = {
     round3: defaultNo
 };
 
-// Round Attendance
-var data = getRusheeProfile(email, function(data){
-    profilePageSetup(data);
-});
+var defaultNo = '<span class="glyphicon glyphicon-remove" style="color:#FF0000;"></span>';
+var defaultYes = '<span class="glyphicon glyphicon-ok" style="color:#00FF00;"></span>';
 
 // returns rushee profile information
 // param1: rushee email
@@ -41,7 +41,6 @@ function getRusheeProfile(email, onDoneLoading) {
         if (err) {
           return console.log(err);
         }
-        console.log(data);
         onDoneLoading(JSON.parse(data));
     });
 }
@@ -235,4 +234,26 @@ function profilePageSetup(rusheeJSON) {
 // Back button script 
 function back() {
     window.history.back();
+}
+
+// Comment section *** this function is noice, utilizes stored page variable to minimize read/writes ***
+function addComment() {
+    getRusheeProfile(email, function(data){
+        let comment = document.getElementById("addComment").value;
+        document.getElementById("addComment").value = '';
+        document.getElementById("addComment").blur();
+        // get rushee JSON & append comment to associated comments property 
+        console.log(data);
+        data["comments"].push(comment);
+        // write result to file
+        data = JSON.stringify(data);
+        var absoluteURL = 'data/rushee-profiles/' + email + '.json';
+        fs.writeFile(absoluteURL, data, function(err) {
+            if(err) {
+                return console.log(err);
+            }
+            console.log("The file was saved!");
+        });
+        location.reload();
+    });
 }

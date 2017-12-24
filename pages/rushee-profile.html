@@ -16,6 +16,9 @@
 
     <!-- Dialogue Box CSS -->
     <link href="../vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
+
+    <!-- Jquery pagination -->
+    <link href="../vendor/jquery-pagination/pagination.css" rel="stylesheet">
     
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -220,6 +223,18 @@
                             <label id="event6">No</label>
                         </div>
                     </div>
+                    <hr>
+                    <label>Comments</label>
+
+                    <div style="padding-top: 10px" id="data-container"></div>
+                    <div style="padding-top: 10px" id="pagination-container"></div>
+
+                    <div class="row" style="padding-top:20px">
+                        <div class="col-md-8">
+                            <input id="addComment" type="text" name="addComment" placeholder="What would you like to comment?" class="form-control">
+                        </div>
+                        <button class="btn btn-success btn-s" onClick="addComment();this.blur()">Add <span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
                 </div>
             </div>
             <!-- /.row -->
@@ -238,6 +253,8 @@
     <!-- THEME DEPENDENCIES -->
     <!-- jQuery -->
     <script>window.$ = window.jQuery = require('../vendor/jquery/jquery.min.js');</script>
+    <!-- Jquery Pagination -->
+    <script src="../vendor/jquery-pagination/pagination.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- Dialogue popup -->
@@ -272,7 +289,24 @@
                 });
 
                 $("#dialog-box").dialog("open");
-            }); 
+            });
+
+            var rusheeComments;
+            getRusheeProfile(email, function(data){
+                rusheeComments = data.comments;
+            });
+
+             // Set up comment section
+            setTimeout(function(){ 
+                $('#pagination-container').pagination({
+                    dataSource: rusheeComments,
+                    pageSize: 5,
+                    callback: function(data, pagination) {
+                        var html = simpleTemplating(data);
+                        $('#data-container').html(html);
+                    }
+                });
+            }, 500);
         });
 
         getRusheeEventAttendance(email, eventAttendance);
@@ -304,6 +338,15 @@
         function removeFromRound(round) {
             console.log("Remove round clicked, round= " + round);
             removeRusheeRoundInvite(round);
+        }
+
+        function simpleTemplating(data) {
+            var html = '<ul>';
+            $.each(data, function(index, item){
+                html += '<li>'+ item +'</li>';
+            });
+            html += '</ul>';
+            return html;
         }
     </script>
 
