@@ -27,7 +27,6 @@ function setupPage() {
     document.getElementById('event').innerHTML = "- Event " + event;
 }
 
-
  /**
  *  Handle sign in button event
  */
@@ -44,6 +43,7 @@ function rusheeCheckin(email) {
     // Update backup attendance file
     getEventJSON(email, function(attendanceJSON){
         attendanceJSON.rushees.push(email);
+
         var attendanceString = JSON.stringify(attendanceJSON);  //reserialize to JSON
         fs.writeFile(attendanceFileURL, attendanceString, function(err) {
             if(err) {

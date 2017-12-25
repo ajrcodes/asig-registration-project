@@ -5,7 +5,7 @@
         "year":"3rd year",
         "address":"test",
         "telephone":"123",
-        "email":"123123"
+        "email":"asdf"
     },
     "eventAttendance": {
         "11": false,
