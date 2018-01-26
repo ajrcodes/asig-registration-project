@@ -176,9 +176,8 @@ function removeRusheeRoundInvite(roundNum) {
 }
 
 /**
- *  returns rushee profile information
- *  @param1: rushee email
- *  @param2: callback function to handle rushee JSON object 
+ *  updates rushee profile page front end
+ *  @param1: rushee JSON 
  */
 function profilePageSetup(rusheeJSON) {
     // information
@@ -193,18 +192,14 @@ function profilePageSetup(rusheeJSON) {
 }
 
 /**
- *  returns rushee profile information
- *  @param1: rushee email
- *  @param2: callback function to handle rushee JSON object 
+ *  returns to the table of rushees
  */
 function back() {
     window.history.back();
 }
 
 /**
- *  returns rushee profile information
- *  @param1: rushee email
- *  @param2: callback function to handle rushee JSON object 
+ *  adds comment to the rushee JSON, reloads page to reflect change
  */
 function addComment() {
     getRusheeProfile(email, function(rusheeJSON){

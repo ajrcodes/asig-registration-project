@@ -12,7 +12,7 @@ app.on('ready', function() {
     mainWindow = new BrowserWindow({});
     // Load html into window
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'pages/rushee-profile.html'),
+        pathname: path.join(__dirname, 'pages/dashboard.html'),
         protocol:'file:',
         slashes: true
     }));
@@ -26,5 +26,6 @@ app.on('ready', function() {
 global.sharedObject = {
     selectedRusheeEmail: 'default value',
     selectedCheckinRound: 'Round 1',
-    selectedCheckinEvent: 'Event 1'
+    selectedCheckinEvent: 'Event 1',
+    selectedRusheeTable: '0'
 }

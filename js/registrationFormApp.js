@@ -107,7 +107,7 @@ function submitForm(event) {
     };
 
     // Backup on machine
-    var fileLocation = path.join('data/rushee-profiles/', rusheeJSON.email + '.json');
+    var fileLocation = path.join('data/rushee-profiles/', rusheeJSON.rusheeProfile.email + '.json');
     var data = JSON.stringify(rusheeJSON);
     fs.writeFile(fileLocation, data, function(err) {
         if(err) {
@@ -115,5 +115,7 @@ function submitForm(event) {
         }
         console.log("The file was saved!");
     }); 
+
+    location.reload();  // reload page
 
 }
