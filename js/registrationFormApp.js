@@ -2,11 +2,15 @@
 var fs = require('fs');
 var path = require('path');
 
+/*
+ * CAMERA 
+ */
 
-// CAMERA FUNCTIONS
 
-// Check that there's an email input before taking picture
-// (We store images on capture under the user's email--not optimal, but it works)
+/**
+ *  Check that there's an email input before taking picture
+ *  (We store images on capture under the user's email--not optimal, but it works)
+ */
 function checkEmail() {
     if(document.getElementById("email").value == "") {
         return false;
@@ -15,6 +19,9 @@ function checkEmail() {
     }
 };
 
+/**
+ *  Setup raw image data as buffer to be written to .jpeg file
+ */
 function decodeBase64Image(dataString) {
     var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
         response = {};
@@ -29,6 +36,9 @@ function decodeBase64Image(dataString) {
     return response;
 }
 
+/**
+ *  Handle snapshot button click event
+ */
 function take_snapshot() {
     WebCamera.snap( function(data_uri) {
         // display snapshot
@@ -50,9 +60,14 @@ function take_snapshot() {
     });
 };
 
+/*
+ * FORM 
+ */
 
-// FORM HANDLING
 
+ /**
+ *  Form handler
+ */
 function submitForm(event) {
     event.preventDefault();
 
@@ -65,23 +80,42 @@ function submitForm(event) {
     let email = document.getElementById("email").value;
     
     let rusheeJSON = {
-        'firstname': firstname,
-        'lastname': lastname,
-        'year': year,
-        'address': address,
-        'telephone': telephone,
-        'email': email
+        "rusheeProfile": {
+            "firstname": firstname,
+            "lastname": lastname,
+            "year": year,
+            "address": address,
+            "telephone": telephone,
+            "email": email 
+        },
+        "eventAttendance": { // Stored using eventID — "round#event#" no space.  true = attended, false = did not attend
+            "11": false,
+            "12": false,
+            "13": false,
+            "21": false,
+            "22": false,
+            "23": false,
+            "31": false,
+            "32": false
+        },
+        "roundInvites": {
+            "1": false,
+            "2": false,
+            "3": false
+        },
+        "comments": []
     };
 
     // Backup on machine
-    var fileLocation = path.join('data/rushee-profiles/', rusheeJSON.email + '.json');
+    var fileLocation = path.join('data/rushee-profiles/', rusheeJSON.rusheeProfile.email + '.json');
     var data = JSON.stringify(rusheeJSON);
     fs.writeFile(fileLocation, data, function(err) {
         if(err) {
             return console.log(err);
         }
-    
         console.log("The file was saved!");
     }); 
+
+    location.reload();  // reload page
 
 }

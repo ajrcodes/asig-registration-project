@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "electron": "^1.7.9",
+    "json2xls": "^0.1.2",
     "webcamjs": "^1.0.23"
   }
 }
